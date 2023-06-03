@@ -110,7 +110,7 @@ def login_screen():
 # Function to handle user login
 def login_user():
     global current_user
-    high_scores[current_user]=0
+    high_scores[current_user]=""
     username_info = username_verify.get()
     password_info = password_verify.get()
 
@@ -221,20 +221,17 @@ def start_game():
             messagebox.showerror("Error", "Invalid input. Please enter a single letter.")
         guess_entry.delete(0, tk.END)
         
+        
         if "".join(guessed_word) == secret_word:
-            
-            messagebox.showinfo("Success", f"Congratulations! You guessed the secret_word: {secret_word}")
-            
+            messagebox.showinfo("Success", f"Congratulations! You guessed the secret_word: {secret_word}\nScore: {attempts_left}")
             save_high_score()
             game_window.destroy()
             # entry_game(current_user)
         elif attempts_left == 0:
-            messagebox.showinfo("Failure", f"Sorry, you ran out of attempts_left. The secret_word was: {secret_word}")
+            messagebox.showinfo("Failure", f"Sorry, you ran out of attempts_left. The secret_word was: {secret_word}\nScore: {attempts_left}")
             save_high_score()
             game_window.destroy()
-            
             # entry_game(current_user)
-        
 
     # Create the game window
     game_window = tk.Toplevel(main_window)
